@@ -57,3 +57,37 @@ VALUES
     ('Company II', 'Telecommunications', 110.5, 2000, 1, 21, 12, 4.9),
     ('Company JJ', 'Manufacturing', 370.0, 3100, 1, 20, 12, 7.6),
     ('Company KK', 'Healthcare', 150.2, 3400, 0, 16, 8, 5.3);
+
+# Analysis: 
+
+# Assign each industry as "Generous PTO", "Standard PTO", or "Limited PTO" based on paid time off days offered. 
+SELECT industry,
+CASE
+    WHEN paid_time_off_days >= 20 THEN 'Generous PTO'
+    WHEN paid_time_off_days >= 15 THEN 'Standard PTO'
+    ELSE 'Limited PTO'
+END AS pto_policy
+FROM fortune_companies
+GROUP BY industry
+ORDER BY pto_policy;
+
+# Which industries have an average revenue of at least $300 Billion, and what are their avg revenues?
+SELECT industry, AVG(revenue) AS avg_revenue
+FROM fortune_companies
+GROUP BY industry
+HAVING AVG(revenue) > 300; 
+
+
+# Which industries have pto greater than 15 and at least 7 average years of employee tenure?
+SELECT industry, paid_time_off_days AS pto, avg_employee_tenure AS tenure
+FROM fortune_companies
+WHERE paid_time_off_days>15
+AND avg_employee_tenure >=7
+GROUP BY industry;
+
+# Identify each industries max revenue as well as their minimum revenue.
+SELECT industry,
+    MAX(revenue) AS max_revenue,
+    MIN(revenue) AS min_revenue
+FROM fortune_companies
+GROUP BY industry;
