@@ -55,7 +55,7 @@ ON FEB.orderid=cust.order_id
 WHERE Feb.Quantity>2
 AND length(orderid) = 6 
 AND orderid <> 'Order ID'
--------------------------------------
+------------------------------------- 
 
 SELECT * FROM BIT_DB.JanSales;
 
