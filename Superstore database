@@ -41,8 +41,18 @@ SELECT SUM(price)
 FROM superstore
 WHERE category='Kitchen Supplies';
 
+SELECT MAX(price)
+FROM superstore
+WHERE category = 'Kitchen Supplies';
+
 #4 Show items with an average rating above 4.5 in ascending order.
 SELECT item_id, item_name, average_rating
 FROM superstore
 WHERE average_rating >4.5
 ORDER BY average_rating
+
+#5 Find which items are priced at 100$ or more.
+SELECT MAX(price), item_name
+FROM superstore
+WHERE price >=100
+GROUP BY item_name;
